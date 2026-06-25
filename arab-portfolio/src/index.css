@@ -1,10 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-/* 
 @import "tailwindcss";
 
-body {
-  margin: 0;
-  padding: 0;
-} */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  @apply transition-colors duration-300;
+}

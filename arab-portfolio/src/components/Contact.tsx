@@ -1,34 +1,51 @@
+import { motion } from "framer-motion";
+import {
+  defaultTransition,
+  fadeInUp,
+  staggerContainer,
+  viewportOnce,
+} from "../lib/animations";
+
+const contactItems = [
+  { icon: "📧", text: "abdifatnadow6895@gmail.com" },
+  { icon: "📱", text: "+254 722381031" },
+  { icon: "📍", text: "Garissa, Kenya" },
+];
+
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 px-6">
-      <div className="max-w-4xl mx-auto text-center backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl p-12">
-        <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent">
+    <section id="contact" className="py-20 px-6 bg-slate-100 dark:bg-slate-900 transition-colors">
+      <div className="max-w-4xl mx-auto text-center">
+        <motion.h2
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={fadeInUp}
+          transition={defaultTransition}
+          className="text-4xl font-bold mb-8 text-cyan-600 dark:text-cyan-400"
+        >
           Contact Me
-        </h2>
+        </motion.h2>
 
-        <form className="space-y-6 mt-10">
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="w-full p-4 rounded-2xl bg-white/10 border border-white/20"
-          />
-
-          <input
-            type="email"
-            placeholder="Your Email"
-            className="w-full p-4 rounded-2xl bg-white/10 border border-white/20"
-          />
-
-          <textarea
-            rows={5}
-            placeholder="Your Message"
-            className="w-full p-4 rounded-2xl bg-white/10 border border-white/20"
-          ></textarea>
-
-          <button className="px-10 py-4 rounded-full bg-gradient-to-r from-pink-500 to-cyan-500 text-lg font-bold">
-            Send Message
-          </button>
-        </form>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={staggerContainer}
+          className="space-y-4"
+        >
+          {contactItems.map((item) => (
+            <motion.p
+              key={item.text}
+              variants={fadeInUp}
+              transition={defaultTransition}
+              whileHover={{ scale: 1.02 }}
+              className="text-slate-700 dark:text-white"
+            >
+              {item.icon} {item.text}
+            </motion.p>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

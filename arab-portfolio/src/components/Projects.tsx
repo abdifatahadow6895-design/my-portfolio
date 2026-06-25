@@ -1,46 +1,61 @@
+import { motion } from "framer-motion";
+import {
+  defaultTransition,
+  fadeInUp,
+  staggerContainer,
+  viewportOnce,
+} from "../lib/animations";
+
 const projects = [
   {
+    title: "Kids Coding Competition",
+    description: "Competition platform for students.",
+  },
+  {
     title: "E-Commerce Website",
-    desc: "Modern online shopping platform.",
+    description: "Modern online shopping platform.",
   },
   {
-    title: "Social Media App",
-    desc: "Social media application with authentication.",
-  },
-  {
-    title: "Portfolio Website",
-    desc: "Beautiful portfolio with animations.",
+    title: "Hotel Booking System",
+    description: "Reservation management application.",
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6">
+    <section id="projects" className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl text-center font-bold mb-16 bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent">
+        <motion.h2
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={fadeInUp}
+          transition={defaultTransition}
+          className="text-4xl font-bold mb-12 text-center text-cyan-600 dark:text-cyan-400"
+        >
           Projects
-        </h2>
+        </motion.h2>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={staggerContainer}
+          className="grid md:grid-cols-3 gap-8"
+        >
           {projects.map((project) => (
-            <div
+            <motion.div
               key={project.title}
-              className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl overflow-hidden"
+              variants={fadeInUp}
+              transition={defaultTransition}
+              whileHover={{ scale: 1.03, y: -6 }}
+              className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 hover:border-cyan-500/50 shadow-sm dark:shadow-none transition-colors"
             >
-              <div className="h-56 bg-gradient-to-br from-pink-500 via-purple-500 to-cyan-500"></div>
-
-              <div className="p-8">
-                <h3 className="text-3xl font-bold mb-4">{project.title}</h3>
-
-                <p className="text-gray-300 mb-6">{project.desc}</p>
-
-                <button className="px-6 py-3 rounded-full bg-gradient-to-r from-pink-500 to-cyan-500">
-                  View Project
-                </button>
-              </div>
-            </div>
+              <h3 className="text-2xl font-bold mb-4">{project.title}</h3>
+              <p className="text-slate-600 dark:text-slate-400">{project.description}</p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
